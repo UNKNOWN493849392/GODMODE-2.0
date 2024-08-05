@@ -1,0 +1,46 @@
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create the Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.Parent = screenGui
+
+-- Create the TextLabel
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(1, 0, 0.3, 0)
+textLabel.Position = UDim2.new(0, 0, 0, 0)
+textLabel.BackgroundTransparency = 1
+textLabel.Text = "GODMODE 2.0"
+textLabel.TextColor3 = Color3.new(1, 1, 1)
+textLabel.Parent = frame
+
+-- Create the TextButton
+local textButton = Instance.new("TextButton")
+textButton.Size = UDim2.new(0.5, 0, 0.4, 0)
+textButton.Position = UDim2.new(0.25, 0, 0.6, 0)
+textButton.BackgroundColor3 = Color3.new(0, 1, 0)
+textButton.Text = "START"
+textButton.Parent = frame
+
+-- Add functionality to the button
+local clicked = false
+
+textButton.MouseButton1Click:Connect(function()
+    if not clicked then
+        clicked = true
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+        if humanoid then
+            humanoid.Damage = 100000000
+        end
+
+        textButton.Text = "ACTIVATED"
+        textButton.BackgroundColor3 = Color3.new(1, 0, 0)
+    end
+end)
